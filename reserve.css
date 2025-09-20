@@ -1,0 +1,857 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    margin: 0;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    direction: rtl;
+    overflow-x: hidden;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8); /* Start smaller */
+        opacity: 0; /* Fade in from invisible */
+    }
+    to {
+        transform: scale(1); /* End at full size */
+        opacity: 1; /* Fully visible */
+    }
+}
+
+img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    margin-top: 20px;
+    border-radius: 15px;
+    animation: zoomIn 1.2s ease-in-out;
+}
+
+/* Container styling */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 85%;
+    margin-bottom: 30px;
+    background-color: #ffffff;
+}
+
+/* Header */
+h1 {
+    font-weight: 600;
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #007bff;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeInDown 0.6s ease-in-out;
+}
+
+/* Login Button */
+#login-btn {
+    padding: 12px 24px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#login-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+/* Flex container for dates and reservation form */
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 80%;
+    margin-top: 20px;
+}
+
+/* Calendar Styles */
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    direction: ltr; /* Dates flow left-to-right */
+    text-align: center; /* Keep Arabic text centered */
+}
+
+.calendar .day {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #007bff;
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #000000;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Highlighted day */
+.calendar .day:hover {
+    background-color: #007bff;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.4);
+}
+
+/* Selected day */
+.calendar .day.selected {
+    background-color: #28a745 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(0, 255, 127, 0.5);
+}
+
+/* Styling for day names (Sun, Mon, etc.) */
+.calendar .day-name {
+    font-size: 1em;
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Styling for weekends */
+.calendar .day.weekend {
+    color: #dc3545; /* Red color for weekends */
+}
+
+/* Improve the layout for smaller screens */
+@media (max-width: 768px) {
+    .calendar {
+        grid-template-columns: repeat(7, 1fr);
+    }
+
+    .calendar .day {
+        width: 45px;
+        height: 45px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar .day {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9em;
+    }
+}
+
+.calendar .day.selected {
+    background-color: #28a745 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(0, 255, 127, 0.5);
+}
+
+/* Modern pop-up form */
+.reservation-form {
+    width: 80%;
+    max-width: 350px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 15px;
+    border: 1px solid #ddd;
+    box-shadow: 0 40px 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    opacity: 0; /* Start hidden */
+    visibility: hidden; /* Prevents interaction when hidden */
+    transition: opacity 0.6s ease-in-out, visibility 0s 0.6s; /* Smooth transition for opacity */
+}
+
+.reservation-form.active {
+    opacity: 1; /* Fade in when active */
+    visibility: visible; /* Make it interactive */
+    transition: opacity 0.6s ease-in-out, visibility 0s 0s; /* No delay on show */
+}
+
+.reservation-form .form-content {
+    animation: slideIn 0.6s ease-in-out;
+}
+
+.reservation-form h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+.reservation-form input[type="text"],
+.reservation-form input[type="tel"],
+.reservation-form select {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.reservation-form input[type="submit"] {
+    padding: 12px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.reservation-form input[type="submit"]:hover {
+    background-color: #218838;
+    transform: scale(1.1);
+}
+
+#close-btn {
+    padding: 10px 20px;
+    background-color: #ff6347;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#close-btn:hover {
+    background-color: #e53e2f;
+    transform: scale(1.1);
+}
+
+.Buy-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4dff47;
+    color: white;
+    border-radius: 30px;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    text-decoration: none; 
+}
+
+.Buy-button:hover {
+    background-color: #4dff47;
+    transform: scale(1.1);
+}
+
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Close the pop-up when clicked outside */
+.reservation-form:focus {
+    display: none;
+}
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Mobile responsive styling */ 
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .calendar .day {
+        width: 45px;
+        height: 45px;
+    }
+
+    #login-btn {
+        font-size: 1em;
+    }
+
+    .flex-container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .calendar .day {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #f1f1f1;
+    color: black;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content label {
+    padding: 12px 16px;
+    cursor: pointer;
+}
+
+.dropdown-content label:hover {
+    background-color: #ddd; /* Highlight on hover */
+}
+
+.dropdown-content input[type=checkbox]:checked + label {
+    background-color: #007BFF; /* Highlight selected */
+    color: white; /* Change text color */
+}
+
+
+/* Updated dropdown container styling */
+.dropdown {
+    position: relative;
+    width: 100%;
+}
+
+.dropbtn {
+    background-color: #fff;
+    color: #007bff;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.dropbtn:hover {
+    background-color: #f0f8ff;
+    transform: scale(1.02);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 8px;
+    margin-top: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.dropdown-content label {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-content label:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.dropdown-content input[type=checkbox] {
+    margin-right: 10px;
+}
+
+/* Show the selected services in the button when clicked */
+.selected-service {
+    background-color: #e7f0ff;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    padding: 5px 10px;
+}
+
+.dropdown-content input[type=checkbox]:checked + label {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Style for the "Selected Services" display */
+.selected-services {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.selected-services span {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 12px;
+    margin: 5px;
+    font-size: 14px;
+}
+
+.selected-services span::after {
+    content: '✕';
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+/* Adjust dropdown for mobile responsiveness */
+@media (max-width: 768px) {
+    .dropbtn {
+        font-size: 14px;
+    }
+
+    .dropdown-content label {
+        font-size: 14px;
+    }
+}
+
+
+/* Adding for functionality of newer features, correct placement of css here */
+/* Cancel Button */
+#cancel-btn {
+    padding: 12px 24px;
+    background-color: #dc3545; /* Bootstrap's danger color */
+    color: #fff;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#cancel-btn:hover {
+    background-color: #c82333; /* Darker shade for hover effect */
+    transform: scale(1.1);
+}
+
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Table Styles (optional) */
+#appointments-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#appointments-table-container th,
+#appointments-table-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#appointments-table-container th {
+    background-color: #f2f2f2;
+}
+
+
+/* General Styles for Mobile Responsiveness */
+@media (max-width: 768px) {
+    /* Stack elements vertically */
+    .flex-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px; /* Adjust spacing between sections */
+    }
+
+    /* Adjust calendar layout */
+    .calendar {
+        grid-template-columns: repeat(2, 1fr); /* Show two columns instead of seven */
+        gap: 10px; /* Reduce spacing between items */
+        width: 100vw; /* Full width for smaller screens */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .calendar .day {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* Center reservation form popup */
+    .reservation-form {
+        width: 90%; /* Take most of the screen width */
+        max-width: 400px; /* Limit maximum width */
+        padding: 20px; /* Reduce padding for smaller screens */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    /* Adjust buttons and text size for smaller screens */
+    #login-btn, #cancel-btn, #close-btn {
+        font-size: 10px;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.8em; /* Smaller font size for headings */
+    }
+
+    h2 {
+        font-size: 1.4em;
+    }
+}
+
+/* Further adjustments for very small screens (phones) under 480px */
+@media (max-width: 480px) {
+    .calendar {
+        grid-template-columns: repeat(1, 1fr); /* Show one column for very small screens */
+        gap: 5px; /* Reduce spacing further */
+    }
+
+    .calendar .day {
+        width: 40px;
+        height: 40px;
+    }
+
+    .reservation-form {
+        padding: 15px; /* Further reduce padding for small devices */
+    }
+
+    h1 {
+        font-size: 1.5em; /* Even smaller heading size */
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    #login-btn, #cancel-btn, #close-btn {
+        font-size: 20px; /* Smaller button text size */
+        padding: 8px;
+    }
+}
+
+
+
+/* Styles for upcoming dates */
+/* Styles for upcoming dates */
+#date-list {
+    display: flex; /* Use flexbox to arrange dates horizontally */
+    flex-wrap: wrap; /* Allow wrapping to the next line if necessary */
+    justify-content: center; /* Center the dates within the container */
+    gap: 15px; /* Space between date items */
+    direction: ltr;
+}
+
+/* Individual date item styles */
+.date-item {
+    border: 2px solid black; /* Black border around each date */
+    border-radius: 15px; /* Rounded corners for a softer look */
+    padding: 10px 15px; /* Padding inside each date item */
+    background-color: #ffffff; /* White background for contrast */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition effects */
+}
+
+/* Hover effect for date items */
+.date-item:hover {
+    background-color: #007bff; /* Change background on hover */
+    color: white; /* Change text color on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Seven columns for days of the week */
+    gap: 15px; /* Space between days */
+    padding: 20px; /* Padding around the calendar */
+    justify-content: center; /* Center the calendar */
+    background: #fff; /* Background color */
+    border-radius: 20px; /* Rounded corners for calendar */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+/* Individual Day Styles */
+.calendar .day {
+    width: 100px; /* Fixed width for each day */
+    height: 100px; /* Fixed height for each day */
+    display: flex; /* Flexbox to center content */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    border: 2px solid #007bff; /* Blue border for each day */
+    border-radius: 12px; /* Rounded corners for the borders */
+    cursor: pointer; /* Pointer cursor on hover */
+    background-color: #ffffff; /* White background for each day */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Shadow effect for days */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Transition effects */
+}
+
+/* Hover Effect for Days */
+.calendar .day:hover {
+    background-color: #007bff; /* Change background on hover */
+    color: white; /* Change text color on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Selected Day Style */
+.calendar .day.selected {
+    background-color: #28a745 !important; /* Green background for selected day */
+    color: #ffffff !important; /* White text for selected day */
+}
+
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the top */
+    width: 80%;
+    margin-top: 20px;
+    gap: 30px; /* Space between sections */
+    border: 2px solid black; /* Black border around the flex container */
+    border-radius: 20px; /* Rounded corners for the container */
+    padding: 20px; /* Padding inside the container */
+    background-color: #ffffff; /* White background for contrast */
+}
+
+/* Individual section styles */
+.upcoming-dates, .reservation-form {
+    flex: 1; /* Allow sections to grow equally */
+    padding: 20px; /* Padding inside each section */
+}
+
+/* Calendar styles */
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Seven columns for days of the week */
+    gap: 15px; /* Space between days */
+}
+
+/* Individual Day Styles */
+.date-item {
+    width: 200px; /* Fixed width for each date item */
+    height: 50px; /* Fixed height for each date item */
+    display: flex; /* Flexbox to center content */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    border: 2px solid #007bff; /* Blue border for each day */
+    border-radius: 12px; /* Rounded corners for the borders */
+    cursor: pointer; /* Pointer cursor on hover */
+    background-color: #ffffff; /* White background for each day */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Shadow effect for days */
+}
+
+
+@media (max-width: 768px) {
+    .flex-container {
+        flex-direction: column; /* Stack sections vertically on smaller screens */
+        align-items: center; /* Center items horizontally */
+        width: 100%; /* Full width for the flex container */
+    }
+
+    .calendar {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Responsive grid */
+        gap: 10px; /* Space between date items */
+        padding: 10px; /* Reduced padding for smaller screens */
+        width: 100%; /* Full width for the calendar */
+        overflow-x: auto; /* Allow horizontal scrolling if needed */
+    }
+
+    .calendar .day {
+        width: 100%; /* Make each day take full width of its grid cell */
+        height: 60px; /* Fixed height for consistency */
+    }
+
+    h1 {
+        font-size: 1.8em; /* Adjust heading size for smaller screens */
+    }
+
+    .reservation-form {
+        width: 90%; /* Ensure reservation form is responsive */
+        max-width: 400px; /* Limit maximum size */
+    }
+
+    #close-btn {
+        width: 90%; /* Adjust button width on smaller screens */
+        max-width: 180px; /* Ensure it's not too large */
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar .day {
+        height: 50px; /* Further reduce height for very small screens */
+    }
+
+    h1 {
+        font-size: 1.5em; /* Even smaller heading size for very small screens */
+    }
+}
+
+
+
+.modal-content #submit-cancel{
+    border-radius: 5px;
+    background-color: #c82333;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    max-height: 300px; /* Adjust this value as needed */
+    overflow-y: auto;
+    bottom: 100%; /* Position the dropdown above the button */
+}
+
+.dropdown-content label {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content label:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Ensure the dropdown doesn't go off-screen at the top */
+@media screen and (max-height: 500px) {
+    .dropdown-content {
+        bottom: auto;
+        top: 100%;
+    }
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling by default */
+}
+
+body.loaded {
+    overflow-x: hidden; /* Keep this instead of auto */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+* {
+    max-width: 100%;
+    box-sizing: border-box; /* Ensures padding/margins are included in width */
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> صالون جبران</title>
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- Include the Firebase configuration script -->
+    <script type="module" src="firebaseconfig.js"></script>
+    <!-- Include your main admin script -->
+    <script type="module" src="admin.js"></script>
+</head>
+<body>
+    <!-- Your HTML content -->
+</body>
+</html>
+
+<body>
+    <header>
+        <h1>Barber Dashboard</h1>
+        <button id="add-reservation-btn">إضافة حجز</button> <!-- New Add Reservation Button -->
+        <input type="date" id="date-input" value="" />
+        <a href="https://jubransalon.com/" class="logo-link">
+            <img src="images/hair_logo.jpg" alt="Logo" class="logo">
+          </a>
+    </header>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Please enter your credentials</h2>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="admin" required>
+
+                <label for="password">password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </div>
+
+    <main id="appointments" style="display:none;">
+        <h2>Appointments</h2>
+        <div id="appointments-list"></div>
+    </main>
+
+    <!-- Add Reservation Modal -->
+    <div id="reservation-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-reservation">&times;</span>
+            <h2>إضافة حجز جديد</h2>
+            <label for="reservation-date">تاريخ الحجز</label>
+            <input type="date" id="reservation-date" required>
+
+            <label for="reservation-time">وقت الحجز</label>
+            <select id="reservation-time">
+                
+                <option value="" disabled selected>--:--</option>
+                <!-- Time slots will be populated here -->
+            </select>
+
+            <label for="customer-name">اسم الزبون</label>
+            <input type="text" id="customer-name" required>
+            <div id="name-suggestions" class="suggestions-box"></div>
+            <select id="area-code" name="area-code" required>
+                <option value="" disabled selected>اختر كود الدولة</option>
+                <option value="+972">+972</option>
+                <option value="+970">+970</option>
+              </select>
+            <label for="customer-phone">رقم الجوال</label>
+            <input type="tel" id="phone" name="phone" required pattern="[0-9]{9}" placeholder="Enter 9 digit number">
+
+            <!-- Services dropdown -->
+            <label for="services">اختر الخدمات</label>
+            <div class='dropdown'>
+                <button type='button' class='dropbtn' id='service-dropdown-btn'>اختر الخدمات</button>
+                <div class='dropdown-content' id='service-dropdown'>
+                    <label><input type="checkbox" value="قص شعر للرجال"> قص شعر للرجال</label>
+                    <label><input type="checkbox" value="قص شعر للأطفال"> قص شعر للأطفال</label>
+                    <label><input type="checkbox" value="شعر و ذقن"> شعر و ذقن</label>
+                    <label><input type="checkbox" value="تحديد ذقن"> تحديد ذقن</label>
+                    <label><input type="checkbox" value="حلاقة ذقن"> حلاقة ذقن</label>
+                    <label><input type="checkbox" value="شمع و خيط"> شمع و خيط</label>
+                    <label><input type="checkbox" value="حناء"> حناء</label>
+                    <label><input type="checkbox" value="شمع الهوبي"> شمع الهوبي</label>
+                    <label><input type="checkbox" value="صبغة"> صبغة</label>
+                    <label><input type="checkbox" value="تمليس"> تمليس</label>
+                    <label><input type="checkbox" value="تنظيف بشرة"> تنظيف بشرة</label>
+                    <label><input type="checkbox" value="سشوار"> سشوار</label>
+                    <label><input type="checkbox" value="الثلاثي جبران"> الثلاثي جبران</label>
+                    <label><input type="checkbox" value="حمام زيت"> حمام زيت</label>
+                    <!-- Add more options as needed -->
+                </div>
+            </div>
+
+            <input type="submit" value="إضافة حجز" id="submit-reservation">
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Your Barber Shop. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
