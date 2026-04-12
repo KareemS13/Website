@@ -1,0 +1,848 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #000000;
+    transition: background-color 0.3s ease;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* Header Styles */
+header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin: 0;
+    padding-left: 70px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.logo-link {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    z-index: 1000;
+  }
+  
+  .logo {
+    height: 70px; /* Adjust as needed */
+    width: auto;
+    cursor: pointer;
+  }
+
+#days-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 12px 25px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#days-btn:hover {
+    background-color: #218838;
+    animation: buttonHover 0.3s ease;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto; /* Centered */
+    padding: 30px; 
+    border-radius: 8px; 
+    width: 60%; /* Default width */
+}
+
+/* Appointments Section */
+#appointments {
+    margin-top: 20px;
+    background-color: white;
+    color: black;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 1em;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+td {
+    background-color: #fafafa;
+}
+
+tr {
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* Add a delay for each row */
+tr:nth-child(1) { animation-delay: 0.1s; }
+tr:nth-child(2) { animation-delay: 0.2s; }
+tr:nth-child(3) { animation-delay: 0.3s; }
+tr:nth-child(4) { animation-delay: 0.4s; }
+tr:nth-child(5) { animation-delay: 0.5s; }
+tr:nth-child(6) { animation-delay: 0.6s; }
+tr:nth-child(7) { animation-delay: 0.7s; }
+tr:nth-child(8) { animation-delay: 0.8s; }
+tr:nth-child(9) { animation-delay: 0.9s; }
+tr:nth-child(10) { animation-delay: 1s; }
+tr:nth-child(11) { animation-delay: 1.1s; }
+/* Continue as needed for more rows */
+
+tr:nth-child(even) {
+   background-color: #f9f9f9; 
+}
+
+.cancel-btn {
+   padding: 8px 15px; 
+   background-color: #dc3545; 
+   color: white; 
+   border-radius: 5px; 
+   transition: background-color 0.3s ease; 
+}
+
+.cancel-btn:hover {
+   background-color: #c82333; 
+}
+
+/* Calendar Styles */
+#calendar,
+.month-grid {
+   display: grid; 
+   grid-template-columns: repeat(7, 1fr); 
+   gap: 10px; 
+   margin-top: 20px; 
+}
+
+/* Day box styles */
+.day {
+   padding: 15px; 
+   background-color:#fff; 
+   border-radius :5px; 
+   cursor:pointer; 
+   transition :background-color .3s ease; 
+   animation: fadeIn 0.6s ease-in-out forwards;
+}
+
+.day:nth-child(1) { animation-delay: 0.1s; }
+.day:nth-child(2) { animation-delay: 0.15s; }
+.day:nth-child(3) { animation-delay: 0.2s; }
+
+.day:hover { 
+   background-color:#f2f2f2; 
+}
+
+/* Styling for Previous and Next Buttons */
+#prev-btn, #next-btn {
+   background-color:#007bff; 
+   color:white; 
+   padding :10px ; 
+   border-radius :5px ; 
+   cursor:pointer ; 
+}
+
+
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    
+	/* Header adjustments for smaller screens */
+	h1 {
+		font-size :2em ; /* Smaller font size for h1 */
+	}
+	
+	#days-btn {
+		padding :10px ; /* Adjust button padding */
+		font-size :1em ; /* Smaller button font size */
+	}
+	
+	/* Modal adjustments for smaller screens */
+	.modal-content {
+		width :90% ; /* Use more width on smaller screens */
+		padding :20px ; /* Reduce padding in modal content */
+	}
+	
+	/* Table adjustments for smaller screens */
+	table {
+		font-size :0.9em ; /* Smaller font size in tables */
+	}
+	
+	th, td {
+		padding :10px ; /* Reduce padding in table cells */
+	}
+	
+	/* Appointments section adjustments */
+	#appointments {
+		padding :15px ; /* Reduce padding in appointments section */
+	}
+	
+	/* Button adjustments for smaller screens */
+	#add-reservation-btn,
+	#submit-reservation,
+	.cancel-btn,
+	#days-btn,
+	#prev-btn,
+	#next-btn {
+		width :100% ; /* Full-width buttons on small screens */
+		margin-bottom :10px ; /* Space between buttons */
+	}
+	
+	/* Calendar grid adjustments for smaller screens */
+	#calendar,
+	.month-grid {
+	  grid-template-columns :repeat(3,1fr); /* Fewer columns on small screens*/
+	  gap :5px ; /* Adjust gap between days*/
+	  margin-top :10px ; /* Reduce margin on top*/
+	  }
+	
+	  .day { 
+	  font-size :1em ; /* Smaller font size for day boxes */ 
+	  }
+}
+
+/* Additional Adjustments for Mobile Responsiveness */
+/* Add any other specific styles needed for mobile responsiveness here */
+
+/* Media Queries for Enhanced Mobile Responsiveness */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px; /* Base font size for readability */
+    }
+
+    header {
+        padding: 15px; /* Reduced padding */
+    }
+
+    h1 {
+        font-size: 2em; /* Smaller heading size */
+    }
+
+    #appointments {
+        padding: 10px; /* Reduced padding */
+        margin-top: 10px; /* Less margin */
+    }
+
+    table {
+        font-size: 0.9em; /* Smaller table font size */
+        border-collapse: collapse; /* Ensure table cells are close */
+    }
+
+    th, td {
+        padding: 10px; /* Reduced padding in table cells */
+    }
+
+    .cancel-btn,
+    #add-reservation-btn,
+    #submit-reservation {
+        width: calc(100% - 20px); /* Full width buttons with margins */
+        margin-bottom: 10px; /* Space between buttons */
+    }
+}
+
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 1em;
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+    /* Make each appointment row a flex container */
+    #appointments-list table tr {
+        display: flex; /* Use flexbox for layout */
+        flex-direction: column; /* Stack items vertically */
+        align-items: stretch; /* Align items to stretch full width */
+    }
+
+    /* Ensure that each cell takes full width */
+    #appointments-list td {
+        display: flex; /* Use flexbox for cells */
+        justify-content: space-between; /* Space out content */
+        padding: 10px; /* Adjust padding for smaller screens */
+        width: 100%; /* Full width for each cell */
+    }
+
+    /* Move the cancel button to the last position in the cell */
+    .cancel-btn {
+        margin-top: 10px; /* Space above button */
+        width: 100%; /* Full width button */
+        text-align: center; /* Center text in button */
+    }
+}
+
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.close-reservation {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-reservation:hover,
+.close-reservation:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Form Styles */
+.modal-content h2 {
+    margin-top: 0;
+    color: #007bff;
+    text-align: center;
+}
+
+.modal-content label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="tel"],
+.modal-content input[type="date"],
+.modal-content select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Dropdown Styles (consistent with your existing dropdown) */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.dropbtn {
+    width: 100%;
+    padding: 10px;
+    background-color: #f9f9f9;
+    color: black;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.dropdown-content label {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content label:hover {
+    background-color: #f1f1f1;
+}
+
+/* Submit Button */
+#submit-reservation {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#submit-reservation:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+        padding: 20px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+        padding: 20px;
+    }
+
+    .modal-content h2 {
+        font-size: 20px;
+    }
+
+    .modal-content label {
+        font-size: 14px;
+    }
+
+    .modal-content input[type="text"],
+    .modal-content input[type="tel"],
+    .modal-content input[type="date"],
+    .modal-content select,
+    .dropbtn {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .dropdown-content label {
+        font-size: 12px;
+        padding: 10px 12px;
+    }
+
+    #submit-reservation {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .close-reservation {
+        font-size: 24px;
+    }
+}
+
+/* Additional adjustments for very small screens */
+@media (max-width: 320px) {
+    .modal-content {
+        padding: 15px;
+    }
+
+    .modal-content h2 {
+        font-size: 18px;
+    }
+
+    .modal-content label {
+        font-size: 12px;
+    }
+
+    .modal-content input[type="text"],
+    .modal-content input[type="tel"],
+    .modal-content input[type="date"],
+    .modal-content select,
+    .dropbtn {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .dropdown-content label {
+        font-size: 11px;
+        padding: 8px 10px;
+    }
+
+    #submit-reservation {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .close-reservation {
+        font-size: 20px;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%; /* Reduced from 95% */
+        margin: 5% auto;
+        padding: 20px;
+        margin-left: 5%; /* Added left margin */
+        margin-right: 5%; /* Added right margin */
+    }
+
+    /* Rest of the existing mobile styles remain the same */
+}
+
+/* Additional adjustments for very small screens */
+@media (max-width: 320px) {
+    .modal-content {
+        width: 85%; /* Slightly narrower */
+        margin: 5% auto;
+        padding: 15px;
+        margin-left: 7%; /* Slightly wider margins */
+        margin-right: 7%; 
+    }
+
+    /* Rest of the existing very small screen styles remain the same */
+}
+
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* Center vertically and horizontally */
+    padding: 30px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    position: relative; /* Add this */
+    left: 50%; /* Add this */
+    transform: translateX(-50%); /* Add this */
+    animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%;
+        margin: 5% auto;
+        padding: 20px;
+        left: 50%; /* Ensure it's centered */
+        transform: translateX(-50%); /* Ensure it's centered */
+    }
+}
+
+/* Additional adjustments for very small screens */
+@media (max-width: 320px) {
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+        padding: 15px;
+        left: 50%; /* Ensure it's centered */
+        transform: translateX(-50%); /* Ensure it's centered */
+    }
+}
+
+
+/* Form Styles */
+.modal-content label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+    text-align: center; /* Center the label text */
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="tel"],
+.modal-content input[type="date"],
+.modal-content select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-align: center; /* Center the input text */
+}
+
+.dropbtn {
+    text-align: center; /* Center the dropdown button text */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .modal-content label {
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .modal-content input[type="text"],
+    .modal-content input[type="tel"],
+    .modal-content input[type="date"],
+    .modal-content select,
+    .dropbtn {
+        text-align: center;
+        font-size: 14px;
+    }
+}
+
+
+/* Header and Button Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #007bff;
+    color: white;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+#add-reservation-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#add-reservation-btn:hover {
+    background-color: #218838;
+}
+
+#date-input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Login Modal Styles */
+#loginModal .modal-content {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#loginModal h2 {
+    color: #007bff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#loginModal form {
+    display: flex;
+    flex-direction: column;
+}
+
+#loginModal label {
+    margin-bottom: 5px;
+    color: #495057;
+}
+
+#loginModal input[type="text"],
+#loginModal input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#loginModal input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#loginModal input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    h1 {
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    #add-reservation-btn, #date-input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    #loginModal .modal-content {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+/* Login Modal Styles */
+#loginModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 50vw;
+}
+
+#loginModal .modal-content {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    position: absolute;
+    left: 50vw;
+
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #loginModal .modal-content {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    #loginModal .modal-content {
+        width: 90%;
+        max-width: 300px;
+        padding: 20px;
+        margin: 0 auto;
+        left: 50vw;
+        transform: translateX(-50%);
+    }
+}
+
+.suggestions-box {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    width: 200px;
+    z-index: 1000;
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.suggestion-item:hover {
+    background: #f0f0f0;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+

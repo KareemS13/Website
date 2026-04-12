@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title> صالون جبران</title>
+   <link rel="stylesheet" href="reserve.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+   <script src="reserve.js" defer></script> 
+   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <a href="https://jubransalon.com/" class="logo-link">
+   <img src="images/hair_logo.jpg" alt="شعار صالون الشعر" />
+   <div class="container">
+   </a>
+       <main>
+           <h1>احجز موعدك</h1>
+           <button id="login-btn">تسجيل الدخول</button>
+           <a href="Buy.html" class="Buy-button">بضائعنا</a>
+           <button id="cancel-btn">إلغاء الحجز</button>
+       </main>
+       
+       <div class="flex-container">
+           <section class="upcoming-dates">
+               <h2>اختر اليوم</h2>
+               <div class="calendar" id="date-list"></div>
+           </section>
+
+           <section class="reservation-form">
+            <h2>تفاصيل الحجز</h2>
+            <label for="time-slots">الوقت:</label>
+            <select id="time-slots">
+                <option value="" disabled selected>--:--</option>
+            </select>
+        
+            <form id="appointment-form">
+                <label for="name">الاسم:</label>
+                <input type="text" id="name" name="name" required>
+            
+                <label for="phone">رقم الجوال:</label>
+                <select id="area-code" name="area-code" required>
+                    <option value="" disabled selected>اختر كود الدولة</option>
+                    <option value="+972">+972</option>
+                    <option value="+970">+970</option>
+                  </select>
+                <input type="tel" id="phone" name="phone" required pattern="[0-9]{9}" placeholder="Enter 9 digit number">
+                  
+            
+                <label for="services">اختر الخدمة:</label>
+                <div class="dropdown">
+                    <button type="button" class="dropbtn" id="dropdown-btn">اختر الخدمات</button>
+                    <div class="dropdown-content" id="service-dropdown">
+                        <label><input type="checkbox" value="قص شعر للرجال"> قص شعر للرجال</label>
+                        <label><input type="checkbox" value="قص شعر للأطفال"> قص شعر للأطفال</label>
+                        <label><input type="checkbox" value="شعر و ذقن"> شعر و ذقن</label>
+                        <label><input type="checkbox" value="تحديد ذقن"> تحديد ذقن</label>
+                        <label><input type="checkbox" value="حلاقة ذقن"> حلاقة ذقن</label>
+                        <label><input type="checkbox" value="شمع و خيط"> شمع و خيط</label>
+                        <label><input type="checkbox" value="حناء"> حناء</label>
+                        <label><input type="checkbox" value="شمع الهوبي"> شمع الهوبي</label>
+                        <label><input type="checkbox" value="صبغة"> صبغة</label>
+                        <label><input type="checkbox" value="تمليس"> تمليس</label>
+                        <label><input type="checkbox" value="تنظيف بشرة"> تنظيف بشرة</label>
+                        <label><input type="checkbox" value="سشوار"> سشوار</label>
+                        <label><input type="checkbox" value="الثلاثي جبران"> الثلاثي جبران</label>
+                        <label><input type="checkbox" value="حمام زيت"> حمام زيت</label>
+                        <!-- Add more options as needed -->
+                    </div>
+                </div>
+            
+                <input type="hidden" id="selected-date-time" name="selected-date-time">
+                <input type="submit" value="احجز الآن">
+            </form>
+            
+        
+            <button id="close-btn">إغلاق</button>
+        </section>
+ 
+       </div>
+       <div id="cancel-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>إلغاء الحجز</h2>
+            <label for="cancel-phone">رقم الجوال:</label>
+            <select id="country-code">
+                <option value="+972">+972</option>
+                <option value="+970">+970</option>
+              </select>
+            <input type="tel" id="cancel-phone" name="cancel-phone" required>
+            <button id="submit-cancel">إرسال</button>
+            <div id="appointments-table-container"></div> <!-- Container for appointments table -->
+        </div>
+    </div>
+
+</body>
+</html>
+
