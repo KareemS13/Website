@@ -1,0 +1,89 @@
+/* Shared Navigation Bar — used by all pages */
+.site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #007bff;
+    padding: 8px 16px;
+    z-index: 99998;
+    border-bottom: 3px solid #0047cc;
+    box-sizing: border-box;
+    direction: ltr;
+}
+
+.site-nav .nav-logo {
+    flex-shrink: 0;
+    margin-right: 16px;
+}
+
+.site-nav .nav-logo-img {
+    height: 44px !important;
+    width: 44px !important;
+    max-width: 44px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    display: block !important;
+    border: 2px solid #fff !important;
+    margin-top: 0 !important;
+    animation: none !important;
+}
+
+.site-nav .nav-links {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    direction: rtl;
+}
+
+.site-nav .nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    padding: 6px 18px;
+    border-radius: 20px;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+
+.site-nav .nav-link:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.site-nav .nav-link.active {
+    background-color: #fff;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.site-nav .nav-login-btn {
+    color: #007bff;
+    background-color: #fff;
+    text-decoration: none;
+    font-size: 0.95em;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+
+.site-nav .nav-login-btn:hover,
+.site-nav .nav-login-btn.active {
+    background-color: #e0e0e0;
+}
+
+.site-nav .nav-title {
+    flex-shrink: 0;
+    margin-left: 16px;
+    color: #fff;
+    font-size: 1.4em;
+    font-weight: bold;
+    direction: rtl;
+    white-space: nowrap;
+    letter-spacing: 1px;
+}

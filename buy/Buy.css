@@ -1,0 +1,430 @@
+html, body {
+    overflow-x: hidden;
+}
+
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #1b1b1b;
+    margin: 0;
+    padding-top: 50px;
+    transition: background-color 0.3s ease;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff;
+    color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin: 0;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+    flex-grow: 1;
+}
+
+.logo-link {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+  }
+  
+  .logo {
+    height: 70px; /* Adjust as needed */
+    width: auto;
+    cursor: pointer;
+  }  
+
+/* Main Content Styles */
+main#products {
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1.5s ease-in-out forwards;
+    width: 90%;
+}
+
+.products-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Table Styles */
+#product-list {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #333333;
+}
+
+th, td {
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #333333;
+    font-size: 1em;
+    color: #1b1b1b;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+td {
+    background-color: #fafafa;
+}
+
+tr {
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* Add a delay for each row, capped at 1s */
+tr:nth-child(1) { animation-delay: 0.1s; }
+tr:nth-child(2) { animation-delay: 0.2s; }
+tr:nth-child(3) { animation-delay: 0.3s; }
+tr:nth-child(4) { animation-delay: 0.4s; }
+tr:nth-child(5) { animation-delay: 0.5s; }
+tr:nth-child(6) { animation-delay: 0.6s; }
+tr:nth-child(7) { animation-delay: 0.7s; }
+tr:nth-child(8) { animation-delay: 0.8s; }
+tr:nth-child(9) { animation-delay: 0.9s; }
+tr:nth-child(10) { animation-delay: 1.0s; }
+tr:nth-child(n+11) { animation-delay: 1.0s; }
+
+/* Alternating row colors */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Image Styling */
+td img {
+    width: 300px;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* Buy Button Styles */
+.buy-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    border: 2px solid #000000;
+}
+
+.buy-btn:hover {
+    background-color: #218838;
+}
+
+.buy-btn:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+/* Modal Styles */
+
+.buy-modal {
+    position: absolute;
+}
+
+.modal {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    overflow: auto;
+    animation: fadeInOverlay 0.9s ease-in-out forwards;
+  }
+  
+
+  .modal.show {
+    display: flex;
+    animation: fadeInOverlay 0.9s ease-in-out;
+    align-self: center;
+  }
+  
+  /* Modal box styling */
+.modal-content {
+  background-color: #ffffff;
+  padding: 30px 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  animation: slideIn 0.9s ease;
+  align-items: center;
+}
+  
+  body.modal-open {
+    overflow: hidden;
+  }
+
+  
+  /* Close button style */
+  .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    font-size: 50px;
+    color: #000000;
+    transition: color 0.2s;
+  }
+  .modal-close:hover {
+    color: #007bff;
+  }
+
+.modal-close-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 60px;
+  transition: background-color 0.3s ease;
+}
+
+.modal-close-btn:hover {
+    background-color: #218838;
+}
+
+.modal-close-btn:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+.modal-content p {
+    font-size: 2em;
+    margin: 20px 0;
+    color: #000000;
+    text-align: center;
+  }
+  
+  .whatsapp-link {
+    display: inline-block;
+    background-color: #25D366;
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+  }
+
+  .whatsapp-link:hover {
+    background-color: #1ebc5b;
+  }
+
+
+  @keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideIn {
+    from { transform: translateY(-40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+/* Animation */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    body, header, main#products, tr {
+        animation: none;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        word-wrap: break-word;
+    }
+
+    main#products {
+        padding: 15px;
+        margin: 10px auto;
+        width: 90%;
+    }
+
+    .products-container {
+        justify-content: center;
+    }
+
+    th, td {
+        padding: 12px;
+        font-size: 1em;
+    }
+
+    td img {
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+        margin: 10px auto;
+        display: block;
+    }
+    
+
+    .buy-btn {
+        font-size: 16px;
+        padding: 12px 20px;
+        min-height: 44px;
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+        border: 2px solid #000000;
+    }
+
+    /* Stack table rows as cards */
+    #product-list {
+        border: none;
+    }
+
+    #product-list thead {
+        display: none;
+    }
+
+    #product-list tr {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px 0;
+        background-color: #fff;
+        border: 1px solid #000000;
+        border-radius: 8px;
+        box-shadow: 2px 3px 4px rgb(0, 0, 0);
+        padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #product-list td {
+        display: block;
+        padding: 8px 0;
+        width: 100%;
+        border: none;
+        text-align: center;
+    }
+
+    #product-list td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+        color: #000000;
+    }
+
+    #product-list th {
+        display: none;
+    }
+
+    /* Modal adjustments for small screens */
+    .modal-content {
+        width: 85%;
+        padding: 10px;
+        min-height: 120px;
+        align-items: center;
+        align-self: center;
+        left: 20px;
+    }
+
+    .modal-content p {
+        font-size: 1.2em;
+    }
+
+    .modal-close-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 320px) {
+    h1 {
+        font-size: 1.6em;
+    }
+
+    th, td {
+        font-size: 0.95em;
+        padding: 8px;
+    }
+
+    td img {
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        margin: 10px auto;
+    }
+    
+
+    .buy-btn {
+        font-size: 14px;
+        padding: 10px 16px;
+        min-height: 44px;
+        border: 2px solid #000000;
+    }
+
+    .modal-content {
+        width: 85%;
+        padding: 10px;
+        min-height: 100px;
+    }
+
+    .modal-content p {
+        font-size: 1em;
+    }
+}
+
+/* Ensure wider layout on larger screens */
+@media (min-width: 769px) {
+    main#products {
+        width: 90%;
+        max-width: 1200px;
+    }
+
+    .products-container {
+        max-width: 100%;
+    }
+
+    #product-list {
+        width: 100%;
+    }
+}
