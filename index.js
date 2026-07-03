@@ -3,6 +3,27 @@ const admin = require('firebase-admin');
 const moment = require('moment');
 admin.initializeApp();
 
+const GREEN_API_INSTANCE = '7107547836';
+const GREEN_API_TOKEN = '3a7c5871b22347afa27ad573a8b00835fca39237e3d14ebd92';
+const BARBER_PHONE = '970595243767';
+
+function formatPhone(phone) {
+    return phone.replace(/[\s+\-()]/g, '') + '@c.us';
+}
+
+async function sendWhatsApp(phone, message) {
+    const url = `https://api.green-api.com/waInstance${GREEN_API_INSTANCE}/sendMessage/${GREEN_API_TOKEN}`;
+    try {
+        await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chatId: formatPhone(phone), message })
+        });
+    } catch (error) {
+        console.error('WhatsApp notification failed:', error);
+    }
+}
+
 exports.reserveAppointment = functions.https.onRequest(async (request, response) => {
     if (request.method !== 'POST') {
         return response.status(405).send('Method Not Allowed');
@@ -15,21 +36,22 @@ exports.reserveAppointment = functions.https.onRequest(async (request, response)
     }
 
     try {
-        // Reference to the user's phone number as the first branch
         const userRef = admin.database().ref(`Reservations/${phone}`);
 
-        // Create or update user data with appointment details
         const appointmentData = {
-            appointmentTime: appointmentTime, // Store formatted appointment time
-            physicalTime: physicalTime, // Store actual reservation time
+            appointmentTime: appointmentTime,
+            physicalTime: physicalTime,
             services: selectedServices
         };
 
-        // Use update to add the new appointment without overwriting existing data
         await userRef.child('appointments').child(appointmentTime).set(appointmentData);
-
-        // Optionally, update the user's name if it is new or changed
         await userRef.child('name').set(name);
+
+        const formattedTime = moment(appointmentTime).format('dddd, MMMM Do YYYY [at] h:mm A');
+        const servicesList = selectedServices.join(', ');
+
+        await sendWhatsApp(phone, `مرحباً ${name}! ✅\nتم تأكيد موعدك بنجاح.\n\n📅 ${formattedTime}\n✂️ ${servicesList}\n\nنراك قريباً!`);
+        await sendWhatsApp(BARBER_PHONE, `📌 موعد جديد!\n\n👤 ${name}\n📞 ${phone}\n📅 ${formattedTime}\n✂️ ${servicesList}`);
 
         response.status(200).send({ success: true, message: 'Appointment reserved successfully' });
     } catch (error) {
@@ -80,9 +102,6 @@ exports.getAppointments = functions.https.onRequest(async (request, response) =>
     }
 });
 
-
-
-
 exports.getAppointmentsByPhone = functions.https.onRequest(async (request, response) => {
     if (request.method !== 'GET') {
         return response.status(405).send('Method Not Allowed');
@@ -90,7 +109,7 @@ exports.getAppointmentsByPhone = functions.https.onRequest(async (request, respo
 
     const { phone } = request.query;
     const phone1 = phone.replace(/^\s*(\d+)\s+/, '+$1 ');
-    
+
     if (!phone1) {
         return response.status(400).send('Missing required field: phone');
     }
@@ -98,28 +117,26 @@ exports.getAppointmentsByPhone = functions.https.onRequest(async (request, respo
     console.log(phone1);
 
     try {
-        const snapshot = await admin.database().ref('Reservations').child(phone1).once('value'); // Access the user's reservations using their phone number
-        const userData = snapshot.val(); // Get the entire user data
+        const snapshot = await admin.database().ref('Reservations').child(phone1).once('value');
+        const userData = snapshot.val();
         const userAppointments = userData ? userData.appointments : null;
-        const userName = userData ? userData.name : null; // Get the user's name
+        const userName = userData ? userData.name : null;
 
         if (!userAppointments) {
             return response.status(404).send('No appointments found for this phone number.');
         }
 
-        // Prepare an array to hold upcoming appointments
         const upcomingAppointments = [];
-        const currentTime = moment(); // Get the current time for comparison
+        const currentTime = moment();
 
         for (const key in userAppointments) {
             const appointmentTime = userAppointments[key].appointmentTime;
 
-            // Check if the appointment is in the future
             if (moment(appointmentTime).isAfter(currentTime)) {
                 upcomingAppointments.push({
                     appointmentTime,
-                    services: userAppointments[key].services, // Retrieve services directly
-                    name: userName // Use the retrieved name
+                    services: userAppointments[key].services,
+                    name: userName
                 });
             }
         }
@@ -131,8 +148,6 @@ exports.getAppointmentsByPhone = functions.https.onRequest(async (request, respo
         response.status(500).send('Internal Server Error');
     }
 });
-
-
 
 exports.getInfo = functions.https.onRequest(async (request, response) => {
     if (request.method !== 'GET') {
@@ -154,7 +169,7 @@ exports.getInfo = functions.https.onRequest(async (request, response) => {
 
         for (const phone in reservations) {
             const userAppointments = reservations[phone].appointments;
-            const userName = reservations[phone].name; // Corrected variable declaration
+            const userName = reservations[phone].name;
             for (const key in userAppointments) {
                 const appointmentDateTime = userAppointments[key].appointmentTime;
                 const appointmentDate = moment(appointmentDateTime).format('YYYY-MM-DD');
@@ -164,7 +179,7 @@ exports.getInfo = functions.https.onRequest(async (request, response) => {
                         name: userName,
                         phone: phone,
                         appointmentTime: appointmentDateTime,
-                        services: userAppointments[key].services // Include services here
+                        services: userAppointments[key].services
                     });
                 }
             }
@@ -177,7 +192,6 @@ exports.getInfo = functions.https.onRequest(async (request, response) => {
         response.status(500).send('Internal Server Error');
     }
 });
-
 
 exports.cancelAppointment = functions.https.onRequest(async (request, response) => {
     if (request.method !== 'POST') {
@@ -192,8 +206,7 @@ exports.cancelAppointment = functions.https.onRequest(async (request, response) 
 
     try {
         const userRef = admin.database().ref(`Reservations/${phoneNumber}/appointments`);
-        
-        // Find and remove the appointment
+
         const snapshot = await userRef.once('value');
         const userAppointments = snapshot.val();
 
@@ -201,12 +214,11 @@ exports.cancelAppointment = functions.https.onRequest(async (request, response) 
             return response.status(404).send('No appointments found for this phone number.');
         }
 
-        // Iterate through appointments to find and remove the specified one
         let appointmentFound = false;
-        
+
         for (const key in userAppointments) {
             if (userAppointments[key].appointmentTime === appointmentTime) {
-                await userRef.child(key).remove(); // Remove the appointment
+                await userRef.child(key).remove();
                 appointmentFound = true;
                 break;
             }
@@ -215,6 +227,11 @@ exports.cancelAppointment = functions.https.onRequest(async (request, response) 
         if (!appointmentFound) {
             return response.status(404).send('Appointment not found.');
         }
+
+        const formattedTime = moment(appointmentTime).format('dddd, MMMM Do YYYY [at] h:mm A');
+
+        await sendWhatsApp(phoneNumber, `تم إلغاء موعدك بنجاح. ❌\n\n📅 ${formattedTime}\n\nنأمل أن نراك في وقت آخر!`);
+        await sendWhatsApp(BARBER_PHONE, `❌ تم إلغاء موعد\n\n📞 ${phoneNumber}\n📅 ${formattedTime}`);
 
         response.status(200).send('Appointment canceled successfully.');
     } catch (error) {

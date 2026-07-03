@@ -62,7 +62,7 @@ $(document).ready(function() {
         $('#time-slots').val(""); // Select default disabled option '--:--'
 
         $.ajax({
-            url: `http://127.0.0.1:5001/barber-website-55f10/us-central1/getAppointments?date=${formattedDate}`,
+            url: `https://getappointments-n5q3akmgtq-uc.a.run.app?date=${formattedDate}`,
             method: 'GET',
             success: function(response) {
                 const reservedSlots = response.reservedSlots;
@@ -144,7 +144,7 @@ $(document).ready(function() {
         const physicalTime = moment().format();
 
         $.ajax({
-            url: 'http://127.0.0.1:5001/barber-website-55f10/us-central1/reserveAppointment',
+            url: 'https://reserveappointment-n5q3akmgtq-uc.a.run.app',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
@@ -246,7 +246,7 @@ $(document).ready(function() {
 
         // Fetch appointments from the server
         $.ajax({
-            url: `http://127.0.0.1:5001/barber-website-55f10/us-central1/getAppointmentsByPhone?phone=${phoneNumber}`,
+            url: `https://getappointmentsbyphone-n5q3akmgtq-uc.a.run.app?phone=${phoneNumber}`,
             method: 'GET',
             success: function(response) {
                 displayAppointments(response.appointments);
@@ -283,7 +283,7 @@ $(document).ready(function() {
             const phoneNumber = `${countryCode} ${phone}`;
             // Call the server to cancel the appointment
             $.ajax({
-                url: `http://127.0.0.1:5001/barber-website-55f10/us-central1/cancelAppointment`,
+                url: `https://cancelappointment-n5q3akmgtq-uc.a.run.app`,
                 method: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({ phoneNumber: phoneNumber, appointmentTime }),
