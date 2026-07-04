@@ -72,6 +72,10 @@
                     <input type="date" id="reservation-date" required>
                 </div>
                 <div>
+                    <label for="phone">رقم الجوال</label>
+                    <input type="tel" id="phone" name="phone" required pattern="[0-9]{9}" placeholder="Enter 9 digit number">
+                </div>
+                <div>
                     <label for="area-code">كود الدولة</label>
                     <select id="area-code" name="area-code" required>
                         <option value="" disabled selected>اختر</option>
@@ -79,16 +83,12 @@
                         <option value="+970">+970</option>
                     </select>
                 </div>
-                <div>
+                <div class="full-width">
                     <label for="customer-name">اسم الزبون</label>
                     <div style="position:relative;">
                         <input type="text" id="customer-name" name="name" autocomplete="name" required>
                         <div id="name-suggestions" class="suggestions-box"></div>
                     </div>
-                </div>
-                <div class="full-width">
-                    <label for="phone">رقم الجوال</label>
-                    <input type="tel" id="phone" name="phone" required pattern="[0-9]{9}" placeholder="Enter 9 digit number">
                 </div>
                 <div class="full-width">
                     <label>اختر الخدمات</label>
