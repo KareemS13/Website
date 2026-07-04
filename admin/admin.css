@@ -603,29 +603,6 @@ th, td {
 }
 
 
-/* Modal Styles */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto; /* Center vertically and horizontally */
-    padding: 30px;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 600px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    animation: fadeIn 0.8s ease-in-out forwards;
-}
 
 
 /* Responsive adjustments */
