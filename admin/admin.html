@@ -62,21 +62,14 @@
             <h2>إضافة حجز جديد</h2>
             <div class="form-grid">
                 <div>
-                    <label for="reservation-date">تاريخ الحجز</label>
-                    <input type="date" id="reservation-date" required>
-                </div>
-                <div>
                     <label for="reservation-time">وقت الحجز</label>
                     <select id="reservation-time">
                         <option value="" disabled selected>--:--</option>
                     </select>
                 </div>
                 <div>
-                    <label for="customer-name">اسم الزبون</label>
-                    <div style="position:relative;">
-                        <input type="text" id="customer-name" name="name" autocomplete="name" required>
-                        <div id="name-suggestions" class="suggestions-box"></div>
-                    </div>
+                    <label for="reservation-date">تاريخ الحجز</label>
+                    <input type="date" id="reservation-date" required>
                 </div>
                 <div>
                     <label for="area-code">كود الدولة</label>
@@ -85,6 +78,13 @@
                         <option value="+972">+972</option>
                         <option value="+970">+970</option>
                     </select>
+                </div>
+                <div>
+                    <label for="customer-name">اسم الزبون</label>
+                    <div style="position:relative;">
+                        <input type="text" id="customer-name" name="name" autocomplete="name" required>
+                        <div id="name-suggestions" class="suggestions-box"></div>
+                    </div>
                 </div>
                 <div class="full-width">
                     <label for="phone">رقم الجوال</label>
