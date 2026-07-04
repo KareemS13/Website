@@ -348,12 +348,15 @@ th, td {
 
 .modal-content {
     background-color: #fefefe;
-    margin: 5% auto;
-    padding: 30px;
+    margin: 2% auto;
+    padding: 20px;
     border-radius: 8px;
-    width: 80%;
-    max-width: 600px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    box-sizing: border-box;
 }
 
 .close-reservation {
@@ -380,7 +383,7 @@ th, td {
 
 .modal-content label {
     display: block;
-    margin-top: 15px;
+    margin-top: 8px;
     font-weight: bold;
     color: #333;
 }
@@ -390,8 +393,8 @@ th, td {
 .modal-content input[type="date"],
 .modal-content select {
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
+    padding: 7px 10px;
+    margin-top: 3px;
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;
