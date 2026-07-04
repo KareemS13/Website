@@ -97,12 +97,14 @@
             <span class="close">&times;</span>
             <h2>إلغاء الحجز</h2>
             <label for="cancel-phone">رقم الجوال:</label>
-            <select id="country-code">
-                <option value="+972">+972</option>
-                <option value="+970">+970</option>
-              </select>
-            <input type="tel" id="cancel-phone" name="cancel-phone" required>
-            <button id="submit-cancel">إرسال</button>
+            <div class="cancel-phone-row">
+                <button id="submit-cancel">إرسال</button>
+                <input type="tel" id="cancel-phone" name="cancel-phone" required>
+                <select id="country-code">
+                    <option value="+972">+972</option>
+                    <option value="+970">+970</option>
+                </select>
+            </div>
             <div id="appointments-table-container"></div> <!-- Container for appointments table -->
         </div>
     </div>

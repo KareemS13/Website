@@ -885,9 +885,26 @@ footer {
 
 
 
-.modal-content #submit-cancel{
+.cancel-phone-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    direction: rtl;
+}
+
+.cancel-phone-row #country-code {
+    flex-shrink: 0;
+}
+
+.cancel-phone-row #cancel-phone {
+    flex: 1;
+}
+
+.modal-content #submit-cancel {
     border-radius: 5px;
     background-color: #c82333;
+    flex-shrink: 0;
 }
 
 .dropdown {
