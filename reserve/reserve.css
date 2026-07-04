@@ -899,6 +899,7 @@ footer {
 
 .cancel-phone-row #cancel-phone {
     flex: 1;
+    max-width: 200px;
 }
 
 .modal-content #submit-cancel {
