@@ -1,4 +1,9 @@
 /* General Styles */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
 body {
     padding-top: 0;
     margin: 0;
@@ -44,12 +49,16 @@ h1 {
 .modal {
     display: none;
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     z-index: 1000;
     background: rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(4px);
     justify-content: center;
     align-items: center;
+    overflow-y: auto;
 }
 
 .modal.active {
