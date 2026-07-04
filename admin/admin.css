@@ -199,21 +199,22 @@ tr:nth-child(even) {
 
 /* Media Queries for Responsive Design */
 @media (max-width: 768px) {
-    
-	/* Header adjustments for smaller screens */
-	h1 {
-		font-size :2em ; /* Smaller font size for h1 */
-	}
-	
-	#days-btn {
-		padding :10px ; /* Adjust button padding */
-		font-size :1em ; /* Smaller button font size */
-	}
-	
-	/* Modal adjustments for smaller screens */
+
+	h1 { font-size: 2em; }
+	#days-btn { padding: 10px; font-size: 1em; }
+
 	.modal-content {
-		width :90% ; /* Use more width on smaller screens */
-		padding :20px ; /* Reduce padding in modal content */
+		width: 94%;
+		padding: 16px;
+		margin: 4% auto;
+	}
+
+	#reservation-modal .form-grid {
+		grid-template-columns: 1fr;
+	}
+
+	#reservation-modal .form-grid .full-width {
+		grid-column: 1;
 	}
 	
 	/* Table adjustments for smaller screens */
